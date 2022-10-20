@@ -37,4 +37,15 @@ export const LoginService = {
         }
         return undefined;
     },
+
+    logout() {
+        const refresh_token = LocalStorage.get('refresh_token', '');
+        if (refresh_token) {
+            ApiService.post('/api/auth/logout', refresh_token);
+        }
+        console.log('limpou');
+        LocalStorage.clear('refresh_token');
+        LocalStorage.clear('access_token');
+        window.location.reload();
+    },
 };

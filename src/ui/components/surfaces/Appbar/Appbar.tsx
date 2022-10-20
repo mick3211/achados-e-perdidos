@@ -1,12 +1,15 @@
 import Image from 'next/image';
 import { AppBarStyled, ButtonsContainer } from './Appbar.styled';
-import { Button, Toolbar } from '@mui/material';
+import { Toolbar } from '@mui/material';
 import { Container } from '@mui/system';
 import useIsMobile from 'data/hooks/useIsMobile';
 import { useRouter } from 'next/router';
 import Link from '@components/navigation/Link/Link';
 import { useContext } from 'react';
 import { UserContext } from 'data/contexts/UserContext';
+import { UserMenu } from '@components/navigation/UserMenu/UserMenu';
+import { Button } from '@components/inputs/Button/Button';
+import { LoginService } from 'data/services/LoginService';
 
 export const AppBar: React.FC = () => {
     const isMobile = useIsMobile();
@@ -19,38 +22,36 @@ export const AppBar: React.FC = () => {
             <Container maxWidth="xl">
                 <Toolbar>
                     <Link href="/">
-                        <a>
-                            <Image
-                                src="/logo.svg"
-                                alt="Achados e perdidos logo"
-                                width={isMobile ? 90 : 170}
-                                height={isMobile ? 51 : 64}
-                            />
-                        </a>
+                        <Image
+                            src="/logo.svg"
+                            alt="Achados e perdidos logo"
+                            width={isMobile ? 90 : 170}
+                            height={isMobile ? 51 : 64}
+                        />
                     </Link>
                     <ButtonsContainer>
-                        {!isLogged && (
+                        {!isLogged ? (
                             <>
                                 {router.asPath !== '/login' && (
-                                    <Button
-                                        size={isMobile ? 'small' : 'medium'}
-                                        href="/login"
-                                        LinkComponent={Link}
-                                    >
+                                    <Link Component={Button} href="/login">
                                         Login
-                                    </Button>
+                                    </Link>
                                 )}
                                 {router.asPath !== '/cadastro' && (
-                                    <Button
-                                        variant="contained"
-                                        size={isMobile ? 'small' : 'medium'}
-                                        href="/cadastro"
-                                        LinkComponent={Link}
+                                    <Link
+                                        Component={Button}
+                                        href="/login"
+                                        mui={{ variant: 'contained' }}
                                     >
                                         Cadastrar um local
-                                    </Button>
+                                    </Link>
                                 )}
                             </>
+                        ) : (
+                            <UserMenu
+                                displayName={userState.userData.usuario.nome}
+                                onLogout={LoginService.logout}
+                            />
                         )}
                     </ButtonsContainer>
                 </Toolbar>
