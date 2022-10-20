@@ -49,7 +49,6 @@ export function useUserReducer() {
         const currentUser = await LoginService.getUser();
 
         if (currentUser) {
-            console.log(currentUser, 'aadsadas');
             userDispatch({ type: 'SET_USER', payload: currentUser });
         }
 
