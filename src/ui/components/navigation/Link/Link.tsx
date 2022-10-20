@@ -13,7 +13,7 @@ export interface LinkProps {
     next?: NextLinkProps;
     Component?: React.ElementType;
     onClick?: () => void;
-    children: React.ReactElement;
+    children: React.ReactNode;
 }
 
 const Link: React.FC<LinkProps> = ({

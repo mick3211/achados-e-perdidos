@@ -1,12 +1,6 @@
 import { PageTitle } from '@components/data-dispay/PageTitle/PageTitle';
-import {
-    Container,
-    Paper,
-    TextField,
-    Button,
-    Box,
-    Typography,
-} from '@mui/material';
+import { Button } from '@components/inputs/Button/Button';
+import { Container, TextField, Box, Typography } from '@mui/material';
 import { useLogin } from 'data/hooks/pages/useLogin.page';
 import { GetStaticProps, NextPage } from 'next';
 import { FormContainerStyled } from 'ui/styles/pages/login.styled';
@@ -50,11 +44,12 @@ const LoginPage: NextPage = () => {
                         {...register('password')}
                         error={errors.password !== undefined}
                         helperText={errors.password?.message}
-                        sx={{ mb: 3 }}
                     />
 
                     {errorMessage && (
-                        <Typography color="error">{errorMessage}</Typography>
+                        <Typography sx={{ mt: 3 }} color="error">
+                            {errorMessage}
+                        </Typography>
                     )}
                 </FormContainerStyled>
                 <Box sx={{ textAlign: 'center', mt: 6.5 }}>

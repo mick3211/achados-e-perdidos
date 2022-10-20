@@ -32,28 +32,6 @@ const theme = createTheme({
     shape: {
         borderRadius: 5,
     },
-    components: {
-        MuiButton: {
-            styleOverrides: {
-                root: {
-                    textTransform: 'none',
-                    boxShadow: 'none',
-                    fontWeight: 400,
-                    '&:hover': {
-                        boxShadow: 'none',
-                    },
-                },
-                sizeSmall: {
-                    fontSize: '0.7rem',
-                    padding: '8px 14px',
-                },
-                sizeMedium: {
-                    fontSize: '1.1rem',
-                    padding: '16px 52px',
-                },
-            },
-        },
-    },
 });
 
 export default theme;
