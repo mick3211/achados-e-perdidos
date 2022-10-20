@@ -20,16 +20,19 @@ export function useLogin() {
 
     const onSubmit: SubmitHandler<LoginFormInterface> = async data => {
         setIsSubmitting(true);
+        setErrorMessage('');
         const login = await LoginService.login(data);
 
         if (login.success) {
-            setErrorMessage('');
             window.location.reload();
         }
         if (axios.isAxiosError(login.error)) {
             if (login.error?.response?.status == 401)
                 setErrorMessage('Email e/ou senha inválidos');
-            else setErrorMessage('Não foi possível realizar o login');
+            else
+                setErrorMessage(
+                    `Não foi possível realizar o login (${login.error.code})`
+                );
         }
         setIsSubmitting(false);
     };
