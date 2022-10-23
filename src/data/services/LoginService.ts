@@ -43,7 +43,6 @@ export const LoginService = {
         if (refresh_token) {
             ApiService.post('/api/auth/logout', refresh_token);
         }
-        console.log('limpou');
         LocalStorage.clear('refresh_token');
         LocalStorage.clear('access_token');
         window.location.reload();

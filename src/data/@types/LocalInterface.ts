@@ -1,3 +1,4 @@
+import { ApiLinkInterface } from './LinkInterface';
 import type { UserInterface } from './UserInterface';
 
 export interface LocalInterface {
@@ -7,4 +8,5 @@ export interface LocalInterface {
     contato: string;
     descricao?: string;
     usuario: UserInterface;
+    links: ApiLinkInterface[];
 }

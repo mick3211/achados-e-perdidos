@@ -1,9 +1,12 @@
 import { PageTitle } from '@components/data-dispay/PageTitle/PageTitle';
 import { Button } from '@components/inputs/Button/Button';
+import {
+    ButtonContainer,
+    FormContainerStyled,
+} from '@components/inputs/forms/Forms.styled';
 import { Container, TextField, Box, Typography } from '@mui/material';
 import { useLogin } from 'data/hooks/pages/useLogin.page';
 import { GetStaticProps, NextPage } from 'next';
-import { FormContainerStyled } from 'ui/styles/pages/login.styled';
 export const getStaticProps: GetStaticProps = () => ({
     props: { title: 'Login' },
 });
@@ -25,7 +28,7 @@ const LoginPage: NextPage = () => {
                 subtitle="Realize o login para administrar os objetos cadastrados"
             />
             <form onSubmit={handleSubmit(onSubmit)}>
-                <FormContainerStyled variant="outlined" elevation={0}>
+                <FormContainerStyled>
                     <TextField
                         label="Email"
                         placeholder="Digite o seu email"
@@ -34,7 +37,6 @@ const LoginPage: NextPage = () => {
                         {...register('email')}
                         error={errors.email !== undefined}
                         helperText={errors.email?.message}
-                        sx={{ mb: 3 }}
                     />
                     <TextField
                         label="Senha"
@@ -47,12 +49,10 @@ const LoginPage: NextPage = () => {
                     />
 
                     {errorMessage && (
-                        <Typography sx={{ mt: 3 }} color="error">
-                            {errorMessage}
-                        </Typography>
+                        <Typography color="error">{errorMessage}</Typography>
                     )}
                 </FormContainerStyled>
-                <Box sx={{ textAlign: 'center', mt: 6.5 }}>
+                <ButtonContainer>
                     <Button
                         variant="contained"
                         type="submit"
@@ -60,7 +60,7 @@ const LoginPage: NextPage = () => {
                     >
                         Entrar
                     </Button>
-                </Box>
+                </ButtonContainer>
             </form>
         </Container>
     );

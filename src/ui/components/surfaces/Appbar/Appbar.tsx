@@ -40,7 +40,7 @@ export const AppBar: React.FC = () => {
                                 {router.asPath !== '/cadastro' && (
                                     <Link
                                         Component={Button}
-                                        href="/login"
+                                        href="/cadastro"
                                         mui={{ variant: 'contained' }}
                                     >
                                         Cadastrar um local
@@ -49,7 +49,11 @@ export const AppBar: React.FC = () => {
                             </>
                         ) : (
                             <UserMenu
-                                displayName={userState.userData.usuario.nome}
+                                displayName={
+                                    userState.userData.usuario.nome.split(
+                                        ' '
+                                    )[0]
+                                }
                                 onLogout={LoginService.logout}
                             />
                         )}
