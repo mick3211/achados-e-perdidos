@@ -15,6 +15,10 @@ export function useLogin() {
         register,
         handleSubmit,
     } = useForm<LoginFormInterface>({
+        defaultValues: {
+            email: process.env.NEXT_PUBLIC_LOGIN_TEST_EMAIL,
+            password: process.env.NEXT_PUBLIC_LOGIN_TEST_PASSWORD,
+        },
         resolver: yupResolver(FormScheemaService.login()),
     });
 
