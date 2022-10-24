@@ -6,6 +6,19 @@ export const ApiService = axios.create({
     baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
 });
 
+ApiService.interceptors.response.use(
+    resp => resp,
+    err => {
+        if (
+            err.response.status === 401 &&
+            err.response.data.code === 'token_not_valid'
+        ) {
+            handleTokenRefresh(err);
+        }
+        return Promise.reject(err);
+    }
+);
+
 async function handleTokenRefresh(err: { config: AxiosRequestConfig }) {
     const refreshToken = LocalStorage.get<string>('refresh_token', '');
     if (refreshToken) {
@@ -16,7 +29,7 @@ async function handleTokenRefresh(err: { config: AxiosRequestConfig }) {
             const { data } = await ApiService.post<{
                 access: string;
                 refresh: string;
-            }>('/auth/token/refresh/', {
+            }>('/api/auth/refresh/', {
                 refresh: refreshToken,
             });
 
