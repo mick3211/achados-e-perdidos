@@ -47,7 +47,7 @@ const Objetos: NextPage = () => {
             <Box sx={{ textAlign: 'center', mt: 4.5 }}>
                 <Link
                     Component={Button}
-                    href="/novo-objeto"
+                    href="/objetos/novo"
                     mui={{ variant: 'contained' } as ButtonProps}
                 >
                     Novo objeto
