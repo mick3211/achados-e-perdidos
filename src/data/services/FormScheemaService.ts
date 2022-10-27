@@ -69,4 +69,21 @@ export const FormScheemaService = {
             })
             .defined();
     },
+    dadosObjeto() {
+        return yup
+            .object()
+            .shape({
+                nome: yup
+                    .string()
+                    .required('Insira o nome do objeto')
+                    .min(3, 'Nome muito curto')
+                    .max(255, 'O nome não deve exceder 255 caracteres'),
+                descricao: yup
+                    .string()
+                    .required('Insira a descrição do objeto')
+                    .min(3, 'Nome muito curto')
+                    .max(255, 'A descrição não deve exceder 255 caracteres'),
+            })
+            .defined();
+    },
 };
