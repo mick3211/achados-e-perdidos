@@ -5,7 +5,7 @@ import React, { useContext } from 'react';
 
 const AnnonymouRoutes = ['/login', '/cadastro', '/'];
 
-const PrivateRoutes = ['/objetos', '/objetos/novo'];
+const PrivateRoutes = ['/objetos', '/objetos/novo', '/objetos/editar'];
 
 export const Router: React.FC<{ children: React.ReactNode }> = ({
     children,
@@ -14,8 +14,8 @@ export const Router: React.FC<{ children: React.ReactNode }> = ({
     const { userState } = useContext(UserContext);
     const isLogged = userState.userData.nome.length > 1;
     const canShow =
-        (AnnonymouRoutes.includes(router.asPath) && !isLogged) ||
-        (PrivateRoutes.includes(router.asPath) && isLogged);
+        (AnnonymouRoutes.includes(router.pathname) && !isLogged) ||
+        (PrivateRoutes.includes(router.pathname) && isLogged);
 
     if (userState.isLogging) {
         return (

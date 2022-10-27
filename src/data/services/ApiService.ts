@@ -10,10 +10,11 @@ ApiService.interceptors.response.use(
     resp => resp,
     err => {
         if (
+            err.response &&
             err.response.status === 401 &&
             err.response.data.code === 'token_not_valid'
         ) {
-            handleTokenRefresh(err);
+            return handleTokenRefresh(err);
         }
         return Promise.reject(err);
     }
@@ -43,7 +44,7 @@ async function handleTokenRefresh(err: { config: AxiosRequestConfig }) {
                 err.config.headers.Authorization =
                     ApiService.defaults.headers.common['Authorization'];
 
-            return ApiService(err.config);
+            return await ApiService(err.config);
         } catch (e) {
             return err;
         }
