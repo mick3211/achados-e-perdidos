@@ -16,14 +16,16 @@ interface FileFieldProps
         'onChange'
     > {
     onChange: (files: FileList) => void;
-    MuiInputProps?: TextFieldProps;
+    MuiInputProps?: Omit<TextFieldProps, 'defaultValue'>;
+    defaultValue?: string;
 }
 
 export const FileField: React.FC<FileFieldProps> = ({
     MuiInputProps,
+    defaultValue,
     ...props
 }) => {
-    const [fileName, setFileName] = useState('');
+    const [fileName, setFileName] = useState(defaultValue as string);
 
     const handleChange = (ev: ChangeEvent<HTMLInputElement>) => {
         const files = ev.target.files;
