@@ -25,7 +25,7 @@ export const FileField: React.FC<FileFieldProps> = ({
     defaultValue,
     ...props
 }) => {
-    const [fileName, setFileName] = useState(defaultValue as string);
+    const [fileName, setFileName] = useState(defaultValue || '');
 
     const handleChange = (ev: ChangeEvent<HTMLInputElement>) => {
         const files = ev.target.files;

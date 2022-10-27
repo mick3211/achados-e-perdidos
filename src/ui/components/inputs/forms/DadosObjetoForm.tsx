@@ -30,12 +30,13 @@ export const DadosObjetoForm: React.FC = () => {
             <Controller
                 control={control}
                 name="imagem_objeto"
-                render={({ field }) => (
+                render={({ field, formState }) => (
                     <FileField
+                        defaultValue={formState.defaultValues?.imagem_objeto}
                         accept=".jpg, .jpeg, .png"
                         multiple={false}
                         MuiInputProps={{
-                            label: 'Imagem do objeto',
+                            label: 'Selecione a imagem do objeto',
                             placeholder: 'Selecione a imagem do objeto',
                             error: errors.imagem_objeto !== undefined,
                             helperText: errors.imagem_objeto?.message,
