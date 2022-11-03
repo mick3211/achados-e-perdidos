@@ -1,11 +1,10 @@
 import { CssBaseline } from '@mui/material';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import LightTheme from 'ui/themes/theme';
-import { ThemeProvider } from '@mui/material';
 import { AppBar } from '@components/surfaces/Appbar/Appbar';
 import { Router } from '@components/utils/Router';
 import { MainProvider } from 'data/contexts/MainContext';
+import { GlobalSnackbar } from '@components/utils/GlobalSnackbar';
 
 function MyApp({ Component, pageProps }: AppProps<{ title?: string }>) {
     return (
@@ -19,6 +18,7 @@ function MyApp({ Component, pageProps }: AppProps<{ title?: string }>) {
                 </title>
             </Head>
             <AppBar />
+            <GlobalSnackbar />
             <Router>
                 <Component {...pageProps} />
             </Router>

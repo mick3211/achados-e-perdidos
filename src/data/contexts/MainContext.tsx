@@ -1,5 +1,6 @@
 import { ThemeProvider } from '@mui/material';
 import LightTheme from 'ui/themes/theme';
+import { SnackbarProvider } from './SnackbarContext';
 import { UserProvider } from './UserContext';
 
 export const MainProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -7,7 +8,9 @@ export const MainProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
     return (
         <ThemeProvider theme={LightTheme}>
-            <UserProvider>{children}</UserProvider>
+            <SnackbarProvider>
+                <UserProvider>{children}</UserProvider>
+            </SnackbarProvider>
         </ThemeProvider>
     );
 };
