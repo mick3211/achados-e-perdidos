@@ -2,6 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { AxiosError } from 'axios';
 import { DadosObjetoFormInterface } from 'data/@types/forms/DadosObjetoFormInterface';
 import { ObjetoInterface } from 'data/@types/ObjetoInterface';
+import { snackbarContext } from 'data/contexts/SnackbarContext';
 import { UserContext } from 'data/contexts/UserContext';
 import { ApiServiceHateoas } from 'data/services/ApiService';
 import { FormScheemaService } from 'data/services/FormScheemaService';
@@ -13,6 +14,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 export function useAdicionarObjeto() {
     const router = useRouter();
     const { userData } = useContext(UserContext).userState;
+    const { setSnackMessage } = useContext(snackbarContext);
     const formMethods = useForm<DadosObjetoFormInterface>({
         resolver: yupResolver(FormScheemaService.dadosObjeto()),
     });
@@ -45,12 +47,17 @@ export function useAdicionarObjeto() {
                     if (imagem_objeto)
                         await handlePictureSubmit(objeto, imagem_objeto);
 
+                    setSnackMessage({
+                        message: 'Objeto adicionado com sucesso',
+                        severity: 'success',
+                    });
                     router.push('/objetos');
-                } catch (e) {
-                    const error = e as AxiosError;
-                    alert(
-                        `Não foi possível cadastrar o objeto (${error.message})`
-                    );
+                } catch (err) {
+                    const error = err as AxiosError;
+                    setSnackMessage({
+                        message: `Não foi possível cadastrar o objeto (${error.message})`,
+                        severity: 'error',
+                    });
                 }
             }
         );
