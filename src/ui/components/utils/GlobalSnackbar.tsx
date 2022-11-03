@@ -9,7 +9,6 @@ export const GlobalSnackbar: React.FC = () => {
         <Snackbar
             open={snackbarState.message.length > 0}
             autoHideDuration={4000}
-            sx={{ bottom: { xs: 64, md: 16 } }}
             onClose={() =>
                 setSnackMessage({
                     message: '',
