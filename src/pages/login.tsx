@@ -4,7 +4,7 @@ import {
     ButtonContainer,
     FormContainerStyled,
 } from '@components/inputs/forms/Forms.styled';
-import { Container, TextField, Box, Typography } from '@mui/material';
+import { Container, TextField } from '@mui/material';
 import { useLogin } from 'data/hooks/pages/useLogin.page';
 import { GetStaticProps, NextPage } from 'next';
 export const getStaticProps: GetStaticProps = () => ({
@@ -12,14 +12,8 @@ export const getStaticProps: GetStaticProps = () => ({
 });
 
 const LoginPage: NextPage = () => {
-    const {
-        errors,
-        handleSubmit,
-        register,
-        errorMessage,
-        onSubmit,
-        isSubmitting,
-    } = useLogin();
+    const { errors, handleSubmit, register, onSubmit, isSubmitting } =
+        useLogin();
 
     return (
         <Container maxWidth="md">
@@ -47,10 +41,6 @@ const LoginPage: NextPage = () => {
                         error={errors.password !== undefined}
                         helperText={errors.password?.message}
                     />
-
-                    {errorMessage && (
-                        <Typography color="error">{errorMessage}</Typography>
-                    )}
                 </FormContainerStyled>
                 <ButtonContainer>
                     <Button
