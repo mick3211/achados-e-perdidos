@@ -1,3 +1,3 @@
-import { ButtonStyled } from './Button.styled';
+import { ButtonStyled, SmallButtonStyled } from './Button.styled';
 
-export { ButtonStyled as Button };
+export { ButtonStyled as Button, SmallButtonStyled as SmallButton };
