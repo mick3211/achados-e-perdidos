@@ -16,6 +16,8 @@ export interface DialogProps {
     onCancel?: () => void;
     confirmText?: string;
     cancelText?: string;
+    noCancel?: boolean;
+    noConfirm?: boolean;
 }
 
 export const Dialog: React.FC<DialogProps> = ({
@@ -25,6 +27,8 @@ export const Dialog: React.FC<DialogProps> = ({
     children,
     onCancel,
     onConfirm,
+    noCancel,
+    noConfirm,
     cancelText = 'Cancelar',
     confirmText = 'Confirmar',
 }) => {
@@ -33,12 +37,16 @@ export const Dialog: React.FC<DialogProps> = ({
             <DialogTitle>{title}</DialogTitle>
             <DialogContent>{children}</DialogContent>
             <DialogActions>
-                <Button variant="outlined" onClick={onCancel ?? onClose}>
-                    {cancelText}
-                </Button>
-                <Button variant="contained" onClick={onConfirm ?? onClose}>
-                    {confirmText}
-                </Button>
+                {!noCancel && (
+                    <Button variant="outlined" onClick={onCancel ?? onClose}>
+                        {cancelText}
+                    </Button>
+                )}
+                {!noConfirm && (
+                    <Button variant="contained" onClick={onConfirm ?? onClose}>
+                        {confirmText}
+                    </Button>
+                )}
             </DialogActions>
         </MuiDialog>
     );
