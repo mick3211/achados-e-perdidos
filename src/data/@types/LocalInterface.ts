@@ -6,7 +6,10 @@ export interface LocalInterface {
     nome: string;
     endereco: string;
     contato: string;
+    imagem?: string;
     descricao?: string;
     usuario: UserInterface;
     links: ApiLinkInterface[];
 }
+
+export type LocalShortInterface = Omit<LocalInterface, 'usuario'>;

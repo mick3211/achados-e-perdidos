@@ -3,7 +3,7 @@ import { UserContext } from 'data/contexts/UserContext';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 
-const AnnonymouRoutes = ['/login', '/cadastro', '/'];
+const AnnonymouRoutes = ['/login', '/cadastro', '/locais', '/'];
 
 const PrivateRoutes = ['/objetos', '/objetos/novo', '/objetos/editar'];
 
