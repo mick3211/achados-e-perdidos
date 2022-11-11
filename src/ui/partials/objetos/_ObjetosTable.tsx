@@ -1,5 +1,5 @@
 import Link from '@components/navigation/Link/Link';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useObjetosTable } from 'data/hooks/partials/useObjetosTable.partial';
 import {
     Table,
@@ -9,6 +9,7 @@ import {
     TableRow,
 } from '@components/data-dispay/Table/Table';
 import { Dialog } from '@components/feedback/Dialog/Dialog';
+import { SmallButton } from '@components/inputs/Button/Button';
 
 export const ObjetosTable: React.FC = () => {
     const {
@@ -46,18 +47,18 @@ export const ObjetosTable: React.FC = () => {
                             <TableCell>{item.nome}</TableCell>
                             <TableCell>{item.descricao}</TableCell>
                             <TableCell>
-                                <Box sx={{ display: 'flex', gap: 2 }}>
+                                <Box sx={{ display: 'flex', gap: 1 }}>
                                     {podeEditar(item) && (
                                         <Link
                                             href={`/objetos/editar?id=${item.id}`}
-                                            Component={Button}
+                                            Component={SmallButton}
                                             mui={{ size: 'small' }}
                                         >
                                             Editar
                                         </Link>
                                     )}
                                     {podeApagar(item) && (
-                                        <Button
+                                        <SmallButton
                                             size="small"
                                             color="error"
                                             onClick={() =>
@@ -65,12 +66,12 @@ export const ObjetosTable: React.FC = () => {
                                             }
                                         >
                                             Apagar
-                                        </Button>
+                                        </SmallButton>
                                     )}
                                     {podeEntregar(item) && (
                                         <Link
                                             href={`/${item.id}/entrega`}
-                                            Component={Button}
+                                            Component={SmallButton}
                                             mui={{ size: 'small' }}
                                         >
                                             Informar entrega
