@@ -70,7 +70,7 @@ export const ObjetosTable: React.FC = () => {
                                     )}
                                     {podeEntregar(item) && (
                                         <Link
-                                            href={`/${item.id}/entrega`}
+                                            href={`/objetos/entrega?id=${item.id}`}
                                             Component={SmallButton}
                                             mui={{ size: 'small' }}
                                         >

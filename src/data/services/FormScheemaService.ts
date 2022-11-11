@@ -1,4 +1,5 @@
 import * as yup from 'yup';
+import { ValidationService } from './ValidationService';
 
 export const FormScheemaService = {
     login() {
@@ -83,6 +84,22 @@ export const FormScheemaService = {
                     .required('Insira a descrição do objeto')
                     .min(3, 'Nome muito curto')
                     .max(255, 'A descrição não deve exceder 255 caracteres'),
+            })
+            .defined();
+    },
+    entregaObjeto() {
+        return yup
+            .object()
+            .shape({
+                dono_nome: yup
+                    .string()
+                    .required('Insira o nome da pessoa que recebeu o objeto')
+                    .min(3, 'Nome muito curto')
+                    .max(255, 'O nome não deve exceder 255 caracteres'),
+                dono_cpf: yup
+                    .string()
+                    .required('Insira o CPF da pessoa que recebeu o objeto')
+                    .test('cpf', 'Insira um CPF válido', ValidationService.cpf),
             })
             .defined();
     },

@@ -5,7 +5,12 @@ import React, { useContext } from 'react';
 
 const AnnonymouRoutes = ['/login', '/cadastro', '/locais', '/'];
 
-const PrivateRoutes = ['/objetos', '/objetos/novo', '/objetos/editar'];
+const PrivateRoutes = [
+    '/objetos',
+    '/objetos/novo',
+    '/objetos/editar',
+    '/objetos/entrega',
+];
 
 export const Router: React.FC<{ children: React.ReactNode }> = ({
     children,
