@@ -4,7 +4,12 @@ import {
     ButtonContainer,
     FormContainerStyled,
 } from '@components/inputs/forms/Forms.styled';
-import { CircularProgress, Container, TextField } from '@mui/material';
+import {
+    CircularProgress,
+    Container,
+    TextField,
+    Typography,
+} from '@mui/material';
 import { useEntregaObjeto } from 'data/hooks/pages/useEntregaObjeto.page';
 import { GetStaticProps, NextPage } from 'next';
 
@@ -29,6 +34,14 @@ const EntregaObjeto: NextPage = () => {
         return (
             <Container sx={{ textAlign: 'center', pt: 8 }}>
                 <CircularProgress />
+            </Container>
+        );
+    }
+
+    if (objeto?.entregue) {
+        return (
+            <Container sx={{ textAlign: 'center', pt: 8 }}>
+                <Typography>O objeto já foi entregue ao dono</Typography>
             </Container>
         );
     }
