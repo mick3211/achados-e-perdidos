@@ -41,7 +41,7 @@ export const LoginService = {
     logout() {
         const refresh_token = LocalStorage.get('refresh_token', '');
         if (refresh_token) {
-            ApiService.post('/api/auth/logout', refresh_token);
+            ApiService.post('/api/auth/logout/', { refresh: refresh_token });
         }
         LocalStorage.clear('refresh_token');
         LocalStorage.clear('access_token');
