@@ -33,5 +33,9 @@ export function useApiHateoas<OutputType>(
 
     const { data, error } = useSWR<OutputType>(name, makeRequest);
 
+    useEffect(() => {
+        mutate(name);
+    }, [name, links]);
+
     return { data, error };
 }

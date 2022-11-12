@@ -70,6 +70,45 @@ export const FormScheemaService = {
             })
             .defined();
     },
+    editarDadosUsuario() {
+        return yup
+            .object()
+            .shape({
+                usuario: yup.object().shape({
+                    nome: yup
+                        .string()
+                        .required('Por favor, insira o nome do administrador')
+                        .min(3, 'Nome muito curto')
+                        .max(255, 'O nome não deve exceder 255 caracteres'),
+                    email: yup
+                        .string()
+                        .required('Insira um email')
+                        .email('Insira um email válido'),
+                    password: yup
+                        .string()
+                        .optional()
+                        .nullable()
+                        .test(
+                            'min',
+                            'A senha deve conter, no mínimo, 8 caracteres',
+                            password => {
+                                if (!password) {
+                                    return true;
+                                }
+                                return password.length > 8;
+                            }
+                        )
+                        .max(255, 'a senha não deve exceder 255 caracteres'),
+                    password_confirmation: yup
+                        .string()
+                        .oneOf(
+                            [yup.ref('password'), null],
+                            'As senhas devem ser iguais'
+                        ),
+                }),
+            })
+            .defined();
+    },
     dadosObjeto() {
         return yup
             .object()
