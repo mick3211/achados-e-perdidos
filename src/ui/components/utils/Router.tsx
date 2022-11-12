@@ -6,6 +6,7 @@ import React, { useContext } from 'react';
 const AnnonymouRoutes = ['/login', '/cadastro', '/locais', '/'];
 
 const PrivateRoutes = [
+    '/alterar-dados',
     '/objetos',
     '/objetos/novo',
     '/objetos/editar',
@@ -32,6 +33,11 @@ export const Router: React.FC<{ children: React.ReactNode }> = ({
 
     if (!canShow) {
         router.replace(isLogged ? '/objetos' : '/login');
+        return (
+            <Box sx={{ textAlign: 'center', py: 9 }}>
+                <CircularProgress />
+            </Box>
+        );
     }
 
     return <>{children}</>;
