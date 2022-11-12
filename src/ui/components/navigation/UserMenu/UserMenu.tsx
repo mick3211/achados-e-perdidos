@@ -16,7 +16,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <div>
+        <>
             <UserMenuButton
                 variant="contained"
                 endIcon={<ExpandMore />}
@@ -29,12 +29,13 @@ export const UserMenu: React.FC<UserMenuProps> = ({
                 anchorEl={ButtonRef.current}
                 open={isMenuOpen}
                 onClose={() => setIsMenuOpen(false)}
+                onClick={() => setIsMenuOpen(false)}
             >
                 <Link href="/alterar-dados">
                     <MenuItemStyled>Alterar dados</MenuItemStyled>
                 </Link>
                 <MenuItemStyled onClick={onLogout}>Sair</MenuItemStyled>
             </MenuStyled>
-        </div>
+        </>
     );
 };
