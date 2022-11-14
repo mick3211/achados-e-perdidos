@@ -10,6 +10,7 @@ import { ObjectService } from 'data/services/ObjectService';
 import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { mutate } from 'swr';
 
 export function useAdicionarObjeto() {
     const router = useRouter();
@@ -51,6 +52,7 @@ export function useAdicionarObjeto() {
                         message: 'Objeto adicionado com sucesso',
                         severity: 'success',
                     });
+                    mutate('listar_objetos_local');
                     router.push('/objetos');
                 } catch (err) {
                     const error = err as AxiosError;

@@ -9,11 +9,14 @@ import { ApiServiceHateoas } from 'data/services/ApiService';
 import { ObjetoInterface } from 'data/@types/ObjetoInterface';
 import { ObjectService } from 'data/services/ObjectService';
 import { AxiosError } from 'axios';
+import { mutate } from 'swr';
+import { snackbarContext } from 'data/contexts/SnackbarContext';
 
 export function useEditarObjeto() {
     const router = useRouter();
     const objetoId = Number(router.query.id);
     const { objetos } = useContext(ObjetosContext);
+    const { setSnackMessage } = useContext(snackbarContext);
 
     const objetoEditar = useMemo(
         () => objetos?.find(objeto => objeto.id === objetoId),
@@ -56,6 +59,11 @@ export function useEditarObjeto() {
                         if (imagem_objeto)
                             await handlePictureSubmit(objeto, imagem_objeto);
 
+                        setSnackMessage({
+                            message: 'Objeto editado com sucesso',
+                            severity: 'info',
+                        });
+                        mutate('listar_objetos_local');
                         router.push('/objetos');
                     } catch (err) {
                         const error = err as AxiosError;

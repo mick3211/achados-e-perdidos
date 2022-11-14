@@ -8,6 +8,7 @@ import { FormScheemaService } from 'data/services/FormScheemaService';
 import { useRouter } from 'next/router';
 import { useContext, useMemo } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { mutate } from 'swr';
 
 export function useEntregaObjeto() {
     const router = useRouter();
@@ -40,6 +41,7 @@ export function useEntregaObjeto() {
                             message: 'Entrega informada com sucesso',
                             severity: 'success',
                         });
+                        mutate('listar_objetos_local');
                         router.replace('/objetos');
                     } catch (err) {
                         const error = err as AxiosError;
